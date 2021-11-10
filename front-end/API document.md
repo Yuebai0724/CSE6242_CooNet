@@ -84,7 +84,7 @@ It should be filtered by selected_ingredients and selected filter type (nutritio
 | recipe_rating | decimal  | Recipe rating |
 
 **Sample**
-
+<img src="https://github.gatech.edu/ygao464/CSE6242_FinalProject/blob/main/image/recipes.png">
 
 
 
@@ -115,4 +115,5 @@ It will be used to create nutrition histograms
 | data    | array (decimal) | the value of corresponding statistics type                   |
 
 **Sample**
+<img src="https://github.gatech.edu/ygao464/CSE6242_FinalProject/blob/main/image/statistics.png">
 
