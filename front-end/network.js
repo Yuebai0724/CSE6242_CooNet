@@ -6,6 +6,8 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
     source: d.source,
     target: d.target,
     frequency: +d.frequency,
+    isSourceSelected: d.is_source_selected,
+    isTargetSelected: d.is_target_selected,
   };
 })
   .then(function (data) {
@@ -17,9 +19,26 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
     // compute the distinct nodes from the links.
     links.forEach(function (link) {
       link.source =
-        nodes[link.source] || (nodes[link.source] = { name: link.source });
+        nodes[link.source] ||
+        (nodes[link.source] = {
+          name: link.source,
+          isSelected: link.isSourceSelected,
+        });
       link.target =
-        nodes[link.target] || (nodes[link.target] = { name: link.target });
+        nodes[link.target] ||
+        (nodes[link.target] = {
+          name: link.target,
+          isSelected: link.isTargetSelected,
+        });
+    });
+    console.log(nodes);
+
+    //Compute total frequency for each node
+    d3.values(nodes).forEach((d) => {
+      let newLinks = links.filter(function (link) {
+        return link.source.name === d.name || link.target.name === d.name;
+      });
+      d.frequency = d3.sum(newLinks, (link) => link.frequency);
     });
 
     console.log(d3.values(nodes));
@@ -35,7 +54,7 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
       .force("center", d3.forceCenter(width / 2, height / 2))
       .force("x", d3.forceX())
       .force("y", d3.forceY())
-      .force("charge", d3.forceManyBody().strength(-550))
+      .force("charge", d3.forceManyBody().strength(-2050))
       .alphaTarget(1)
       .on("tick", tick);
 
@@ -45,8 +64,20 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
       .attr("width", width)
       .attr("height", height);
 
-    //--------------------------------------------------------Add Static Elements------------------------------------------------------//
-    // add the links
+    //--------------------------------------------------------Add Elements------------------------------------------------------//
+    //------------------------------- add links--------------------------//
+
+    let pathOpacityScale = d3.scaleLinear().range([0, 1]);
+    let pathWidthScale = d3.scaleLinear().range([0.2, 3]);
+    let max_link_frequency = d3.max(links, function (link) {
+      return link.frequency;
+    });
+    let min_link_frequency = d3.min(links, function (link) {
+      return link.frequency;
+    });
+    pathOpacityScale.domain([min_link_frequency, max_link_frequency]);
+    pathWidthScale.domain([min_link_frequency, max_link_frequency]);
+
     var path = svg
       .append("g")
       .selectAll("path")
@@ -55,6 +86,12 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
       .append("path")
       .attr("class", function (d) {
         return "link " + d.type;
+      })
+      .style("stroke-opacity", function (d) {
+        return pathOpacityScale(d.frequency);
+      })
+      .style("stroke-width", function (d) {
+        return pathWidthScale(d.frequency);
       });
 
     // define the nodes
@@ -73,8 +110,22 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
           .on("end", dragended)
       );
 
-    // add the nodes
-    var max_degree = 0;
+    //----------------------------------------Add Nodes----------------------------------//
+    let nodesValue = d3.values(nodes);
+    console.log(nodesValue);
+    let max_frequency = d3.max(nodesValue, function (d) {
+      return d.frequency;
+    });
+    let min_frequency = d3.min(nodesValue, function (d) {
+      return d.frequency;
+    });
+    console.log(max_frequency);
+
+    //Set circle properties for nodes
+
+    let rScale = d3.scaleLinear().range([8, 40]);
+    rScale.domain([min_frequency, max_frequency]);
+    console.log(rScale(30000));
 
     node
       .append("circle")
@@ -82,35 +133,33 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
         return d.name.replace(/\s+/g, "").toLowerCase();
       })
       .attr("r", function (d) {
-        d.weight = links.filter(function (link) {
-          return link.source.index == d.index || link.target.index == d.index;
-        }).length;
-        if (d.weight > max_degree) {
-          max_degree = d.weight;
-        }
-        var minRadius = 5;
-        return minRadius + d.weight * 2;
+        return rScale(d.frequency);
       })
       .style("fill", decide_node_fill);
 
     function decide_node_fill(d) {
-      if (d.weight < max_degree / 3) {
-        return "#fff7bc";
-      } else if (d.weight < (max_degree * 2) / 3) {
-        return "#fec44f";
+      if (d.isSelected == 1) {
+        return "black";
       } else {
-        return "#d95f0e";
+        return "white";
       }
     }
 
     node
       .append("svg:text")
+      .attr("class", "node-label")
       .text(function (d) {
         return d.name;
       })
-      .attr("dx", 10)
-      .attr("dy", -10)
-      .style("font-weight", "bold");
+      .attr("dx", 0)
+      .attr("dy", 0)
+      .style("fill", function (d) {
+        if (d.isSelected == 1) {
+          return "white";
+        } else {
+          return "black";
+        }
+      });
 
     // add the curvy lines
     function tick() {
