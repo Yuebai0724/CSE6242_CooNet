@@ -28,8 +28,6 @@ It will be used to create ingredients network graph
 
 **Sample**
 
-![image-20211109233038895](/Users/wujiawei/Library/Application Support/typora-user-images/image-20211109233038895.png)
-
 
 
 # 2 Get Prediction Rating
@@ -87,7 +85,7 @@ It should be filtered by selected_ingredients and selected filter type (nutritio
 
 **Sample**
 
-![image-20211109234449162](/Users/wujiawei/Library/Application Support/typora-user-images/image-20211109234449162.png)
+
 
 
 
@@ -118,4 +116,3 @@ It will be used to create nutrition histograms
 
 **Sample**
 
-![image-20211110001155344](/Users/wujiawei/Library/Application Support/typora-user-images/image-20211110001155344.png)
