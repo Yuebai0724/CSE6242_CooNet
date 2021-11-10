@@ -27,7 +27,7 @@ It will be used to create ingredients network graph
 | frequency          | Int      | The frequency of such pair of ingredients appear in one recipe |
 
 **Sample**
-![ScreenShot]https://github.gatech.edu/ygao464/CSE6242_FinalProject/blob/main/image/ingredients.png
+<img src="https://github.gatech.edu/ygao464/CSE6242_FinalProject/blob/main/image/ingredients.png">
 
 
 # 2 Get Prediction Rating
