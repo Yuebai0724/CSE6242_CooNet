@@ -2,7 +2,7 @@
 
 ## Description
 
-Get ingredients with highest prediction ratings.
+Get ingredients edges list that contains selected nodes and nodes with highest prediction ratings
 
 It will be used to create ingredients network graph
 
