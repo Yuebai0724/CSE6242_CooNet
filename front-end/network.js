@@ -1,7 +1,7 @@
-d3.select("title").text("graph");
+d3.select('title').text('graph');
 
 //-------------------------------------------Parse Data---------------------------------------------//
-d3.dsv(",", "../testData/ingredients.csv", function (d) {
+d3.dsv(',', '../testData/ingredients.csv', function (d) {
   return {
     source: d.source,
     target: d.target,
@@ -50,19 +50,19 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
     var force = d3
       .forceSimulation()
       .nodes(d3.values(nodes))
-      .force("link", d3.forceLink(links).distance(200))
-      .force("center", d3.forceCenter(width / 2, height / 2))
-      .force("x", d3.forceX())
-      .force("y", d3.forceY())
-      .force("charge", d3.forceManyBody().strength(-2050))
+      .force('link', d3.forceLink(links).distance(200))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('x', d3.forceX())
+      .force('y', d3.forceY())
+      .force('charge', d3.forceManyBody().strength(-2050))
       .alphaTarget(1)
-      .on("tick", tick);
+      .on('tick', tick);
 
     var svg = d3
-      .select("body")
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height);
+      .select('body')
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height);
 
     //---------------------------------------------------Add Elements--------------------------------------------//
     //---------------------------------------------------- add links---------------------------------------------//
@@ -79,35 +79,35 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
     pathWidthScale.domain([min_link_frequency, max_link_frequency]);
 
     var path = svg
-      .append("g")
-      .selectAll("path")
+      .append('g')
+      .selectAll('path')
       .data(links)
       .enter()
-      .append("path")
-      .attr("class", function (d) {
-        return "link " + d.type;
+      .append('path')
+      .attr('class', function (d) {
+        return 'link ' + d.type;
       })
-      .style("stroke-opacity", function (d) {
+      .style('stroke-opacity', function (d) {
         return pathOpacityScale(d.frequency);
       })
-      .style("stroke-width", function (d) {
+      .style('stroke-width', function (d) {
         return pathWidthScale(d.frequency);
       });
 
     // define the nodes
     var node = svg
-      .selectAll(".node")
+      .selectAll('.node')
       .data(force.nodes())
       .enter()
-      .append("g")
-      .attr("class", "node")
-      .on("dblclick", doubleClicked)
+      .append('g')
+      .attr('class', 'node')
+      .on('dblclick', doubleClicked)
       .call(
         d3
           .drag()
-          .on("start", dragstarted)
-          .on("drag", dragged)
-          .on("end", dragended)
+          .on('start', dragstarted)
+          .on('drag', dragged)
+          .on('end', dragended)
       );
 
     //------------------------------------------------------Add Nodes-------------------------------------------------//
@@ -128,67 +128,68 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
     console.log(rScale(30000));
 
     node
-      .append("circle")
-      .attr("id", function (d) {
-        return d.name.replace(/\s+/g, "").toLowerCase();
+      .append('circle')
+      .attr('id', function (d) {
+        return d.name.replace(/\s+/g, '').toLowerCase();
       })
-      .attr("r", function (d) {
+      .attr('r', function (d) {
         return rScale(d.frequency);
       })
-      .style("fill", decide_node_fill);
+      .style('fill', decide_node_fill);
 
     function decide_node_fill(d) {
       if (d.isSelected == 1) {
-        return "black";
+        return 'black';
       } else {
-        return "white";
+        return 'white';
       }
     }
 
     node
-      .append("svg:text")
-      .attr("class", "node-label")
+      .append('svg:text')
+      .attr('class', 'node-label')
       .text(function (d) {
         return d.name;
       })
-      .attr("dx", 15)
-      .attr("dy", -15)
+      .attr('dx', 15)
+      .attr('dy', -15);
 
     // add the curvy lines
     function tick() {
-      path.attr("d", function (d) {
+      path.attr('d', function (d) {
         var dx = d.target.x - d.source.x,
           dy = d.target.y - d.source.y,
           dr = Math.sqrt(dx * dx + dy * dy);
         return (
-          "M" +
+          'M' +
           d.source.x +
-          "," +
+          ',' +
           d.source.y +
-          "A" +
+          'A' +
           dr +
-          "," +
+          ',' +
           dr +
-          " 0 0,1 " +
+          ' 0 0,1 ' +
           d.target.x +
-          "," +
+          ',' +
           d.target.y
         );
       });
 
-      node.attr("transform", function (d) {
-        return "translate(" + d.x + "," + d.y + ")";
+      node.attr('transform', function (d) {
+        return 'translate(' + d.x + ',' + d.y + ')';
       });
     }
 
     //--------------------------------------------------------Set Event Function------------------------------------------------------//
     function doubleClicked(d) {
-      d3.select("#" + d.name.replace(/\s+/g, "").toLowerCase()).style(
-        "fill",
-        decide_node_fill
-      );
-      d.fx = null;
-      d.fy = null;
+      // d3.select('#' + d.name.replace(/\s+/g, '').toLowerCase()).style(
+      //   'fill',
+      //   decide_node_fill
+      // );
+      // d.fx = null;
+      // d.fy = null;
+      alert('nihao');
     }
 
     function dragstarted(d) {
@@ -211,9 +212,9 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
       d.fy = d3.event.y;
 
       //change color for pinned nodes
-      d3.select("#" + d.name.replace(/\s+/g, "").toLowerCase()).style(
-        "fill",
-        "black"
+      d3.select('#' + d.name.replace(/\s+/g, '').toLowerCase()).style(
+        'fill',
+        'black'
       );
     }
   })

@@ -23,4 +23,12 @@ text.data-label {
     font: 15px Arial
 }
 
+text.chart-title {
+    font: 30px Arial
+}
 
+div#histogram-area {
+    content: padding: 20px;
+    margin: 20px;
+    border: 1px solid black;
+}
