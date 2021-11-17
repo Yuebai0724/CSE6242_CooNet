@@ -64,8 +64,8 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
       .attr("width", width)
       .attr("height", height);
 
-    //--------------------------------------------------------Add Elements------------------------------------------------------//
-    //------------------------------- add links--------------------------//
+    //---------------------------------------------------Add Elements--------------------------------------------//
+    //---------------------------------------------------- add links---------------------------------------------//
 
     let pathOpacityScale = d3.scaleLinear().range([0, 1]);
     let pathWidthScale = d3.scaleLinear().range([0.2, 3]);
@@ -110,7 +110,7 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
           .on("end", dragended)
       );
 
-    //----------------------------------------Add Nodes----------------------------------//
+    //------------------------------------------------------Add Nodes-------------------------------------------------//
     let nodesValue = d3.values(nodes);
     console.log(nodesValue);
     let max_frequency = d3.max(nodesValue, function (d) {
@@ -151,15 +151,8 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
       .text(function (d) {
         return d.name;
       })
-      .attr("dx", 0)
-      .attr("dy", 0)
-      .style("fill", function (d) {
-        if (d.isSelected == 1) {
-          return "white";
-        } else {
-          return "black";
-        }
-      });
+      .attr("dx", 15)
+      .attr("dy", -15)
 
     // add the curvy lines
     function tick() {
@@ -187,6 +180,7 @@ d3.dsv(",", "../testData/ingredients.csv", function (d) {
         return "translate(" + d.x + "," + d.y + ")";
       });
     }
+
     //--------------------------------------------------------Set Event Function------------------------------------------------------//
     function doubleClicked(d) {
       d3.select("#" + d.name.replace(/\s+/g, "").toLowerCase()).style(

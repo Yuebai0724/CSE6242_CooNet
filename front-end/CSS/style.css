@@ -1,0 +1,26 @@
+path.link {
+    fill: none;
+    stroke-width: 1px;
+    stroke: #c4a109;
+}
+
+circle {
+    fill: #ccc;
+    stroke-width: 7px;
+    stroke: #c4a109;
+}
+
+text.node-label {
+    fill: black;
+    font: 15px Arial;
+    pointer-events: none;
+    align-items: center;
+    align-self: center;
+    background-color: aliceblue;
+}
+
+text.data-label {
+    font: 15px Arial
+}
+
+
