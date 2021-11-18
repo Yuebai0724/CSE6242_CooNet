@@ -30,7 +30,9 @@ text.chart-title {
 }
 
 div#histogram-area {
-    margin: 20px;
+    box-sizing: content-box;
+    width: 50%;
+    height: 50%;
     border: 1px solid black;
 }
 
@@ -41,4 +43,13 @@ div.filter-triangle {
     border-left: 25px solid transparent;
     border-right: 25px solid transparent;
     border-bottom: 50px solid #555;
+}
+
+.recipe-name {
+    font-family: Arial;
+    font-size: 10px;
+}
+
+.recipe-background {
+    stroke: #c4a109;
 }
