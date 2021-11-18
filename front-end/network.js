@@ -11,10 +11,10 @@ d3.dsv(',', '../testData/ingredients.csv', function (d) {
   };
 })
   .then(function (data) {
-    var links = data;
+    let links = data;
     console.log(links);
 
-    var nodes = {};
+    let nodes = {};
 
     // compute the distinct nodes from the links.
     links.forEach(function (link) {
@@ -43,11 +43,11 @@ d3.dsv(',', '../testData/ingredients.csv', function (d) {
 
     console.log(d3.values(nodes));
 
-    var width = 2200,
+    let width = 2200,
       height = 1800;
 
     // Create the network graph by using d3.force
-    var force = d3
+    let force = d3
       .forceSimulation()
       .nodes(d3.values(nodes))
       .force('link', d3.forceLink(links).distance(200))
@@ -58,7 +58,7 @@ d3.dsv(',', '../testData/ingredients.csv', function (d) {
       .alphaTarget(1)
       .on('tick', tick);
 
-    var svg = d3
+    let svg = d3
       .select('body')
       .append('svg')
       .attr('width', width)
@@ -68,7 +68,7 @@ d3.dsv(',', '../testData/ingredients.csv', function (d) {
     //---------------------------------------------------- add links---------------------------------------------//
 
     let pathOpacityScale = d3.scaleLinear().range([0, 1]);
-    let pathWidthScale = d3.scaleLinear().range([0.2, 3]);
+    let pathWidthScale = d3.scaleLinear().range([0, 3]);
     let max_link_frequency = d3.max(links, function (link) {
       return link.frequency;
     });
@@ -78,7 +78,7 @@ d3.dsv(',', '../testData/ingredients.csv', function (d) {
     pathOpacityScale.domain([min_link_frequency, max_link_frequency]);
     pathWidthScale.domain([min_link_frequency, max_link_frequency]);
 
-    var path = svg
+    let path = svg
       .append('g')
       .selectAll('path')
       .data(links)
@@ -95,7 +95,7 @@ d3.dsv(',', '../testData/ingredients.csv', function (d) {
       });
 
     // define the nodes
-    var node = svg
+    let node = svg
       .selectAll('.node')
       .data(force.nodes())
       .enter()
@@ -157,7 +157,7 @@ d3.dsv(',', '../testData/ingredients.csv', function (d) {
     // add the curvy lines
     function tick() {
       path.attr('d', function (d) {
-        var dx = d.target.x - d.source.x,
+        let dx = d.target.x - d.source.x,
           dy = d.target.y - d.source.y,
           dr = Math.sqrt(dx * dx + dy * dy);
         return (

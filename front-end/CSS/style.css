@@ -1,4 +1,5 @@
-path.link {
+
+.link {
     fill: none;
     stroke-width: 1px;
     stroke: #c4a109;
@@ -24,11 +25,20 @@ text.data-label {
 }
 
 text.chart-title {
-    font: 30px Arial
+    font: 30px Arial;
+    text-align: center;
 }
 
 div#histogram-area {
-    content: padding: 20px;
     margin: 20px;
     border: 1px solid black;
+}
+
+div.filter-triangle {
+    width: 0;
+    height: 0;
+    background-color: black;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 50px solid #555;
 }
