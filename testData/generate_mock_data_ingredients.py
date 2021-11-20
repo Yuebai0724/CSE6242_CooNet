@@ -1,5 +1,8 @@
 import random
 import csv
+import numpy as np
+import json
+import pandas as pd
 
 # Input ingredients
 
@@ -48,7 +51,7 @@ def createEdge(ingredients):
 def writeCSV(edges, path="testData/ingredients.csv"):
     file = open(path, 'w', encoding='utf-8')
     file.write(
-        'source,target,is_source_selected,is_target_selected,frequency' + '\n')
+        'source,target,isSourceSelected,isTargetSelected,frequency' + '\n')
 
     for edge in edges:
         file.write(
@@ -56,9 +59,18 @@ def writeCSV(edges, path="testData/ingredients.csv"):
     file.close()
 
 
+def readCSV2JSON(path="testData/ingredients.csv"):
+    df = pd.read_csv(path)
+    df_json = df.to_json(orient='records')
+
+    with open("testData/ingredients.json", 'w') as outfile:
+        json.dump(df_json, outfile)
+
+
 def main():
     edges = createEdge(allIngredient)
     writeCSV(edges)
+    readCSV2JSON()
 
 
 if __name__ == '__main__':

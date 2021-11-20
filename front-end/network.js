@@ -1,17 +1,13 @@
 d3.select('title').text('graph');
 
 //-------------------------------------------Parse Data---------------------------------------------//
-d3.dsv(',', '../testData/ingredients.csv', function (d) {
-  return {
-    source: d.source,
-    target: d.target,
-    frequency: +d.frequency,
-    isSourceSelected: d.is_source_selected,
-    isTargetSelected: d.is_target_selected,
-  };
-})
+d3.json("../testData/ingredients.json")
   .then(function (data) {
-    let links = data;
+    let links = JSON.parse(data);
+    // links = links.forEach(function (link) {
+    //   link.is_source_selected = parseInt(link.is_source_selected)
+    //   link.is_target_selected = parseInt(link.is_target_selected_selected)
+    // })
     console.log(links);
 
     let nodes = {};
@@ -183,13 +179,7 @@ d3.dsv(',', '../testData/ingredients.csv', function (d) {
 
     //--------------------------------------------------------Set Event Function------------------------------------------------------//
     function doubleClicked(d) {
-      // d3.select('#' + d.name.replace(/\s+/g, '').toLowerCase()).style(
-      //   'fill',
-      //   decide_node_fill
-      // );
-      // d.fx = null;
-      // d.fy = null;
-      alert('nihao');
+
     }
 
     function dragstarted(d) {
