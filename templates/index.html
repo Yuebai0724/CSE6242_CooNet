@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="{{ url_for('static',filename='lib/d3.v5.min.js') }}"> </script>
+<script src="{{ url_for('static', filename='lib/jquery.js') }}"></script>
+<script>
+  $SCRIPT_ROOT = {{ request.script_root|tojson }};
+</script>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+
+<head>
+  <title>Charts</title>
+</head>
+
+
+<body>
+<script src="{{ url_for('static',filename='js/network.js') }}"> </script>
+
+
+</script>
+</body>
+</html>
