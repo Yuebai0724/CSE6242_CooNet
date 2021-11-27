@@ -6,7 +6,7 @@
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/double_slider.css') }}">
   <script src="{{ url_for('static',filename='lib/d3.v5.min.js') }}"> </script>
-  
+
 </head>
 <body>
 <div id="histogram-area">
@@ -34,7 +34,7 @@
   children[5].style.left=value+'%';
   children[7].style.left=value+'%';children[11].style.left=value+'%';
   children[11].childNodes[1].innerHTML=this.value;" step="1" tabindex="0" type="range" value="0">
-    
+
     <input id="slider-2" max="99" min="0" oninput="
   this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
   var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
