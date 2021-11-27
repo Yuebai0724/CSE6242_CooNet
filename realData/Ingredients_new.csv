@@ -1,0 +1,458 @@
+,ingredient
+0,adobo
+1,ale
+2,alfredo sauce
+3,allspice
+4,almond
+5,almond extract
+6,almonds
+7,amaretto
+8,apple
+9,apple juice
+10,applesauce
+11,apricot
+12,apricots
+13,artichoke hearts
+14,arugula
+15,asparagus
+16,avocado
+17,bacon
+18,bacon bits
+19,bags
+20,baguette
+21,baking powder
+22,banana
+23,barbecue sauce
+24,barley
+25,basil
+26,bean
+27,beef
+28,beef bouillon cube
+29,beef stock
+30,beer
+31,beets
+32,berries
+33,biscuits
+34,bisquick
+35,bisquick baking mix
+36,blackberries
+37,blueberries
+38,boneless chicken breast
+39,boneless skinless chicken breast
+40,bouillon
+41,bourbon
+42,bran
+43,brandy
+44,bread
+45,breadcrumb
+46,brisket
+47,broccoli
+48,broth
+49,browns
+50,buns
+51,butter
+52,buttermilk
+53,butternut squash
+54,cabbage
+55,cacao
+56,cajun seasoning
+57,cake
+58,candies
+59,capers
+60,capsicum
+61,cardamom
+62,carrot
+63,cashews
+64,catsup
+65,cauliflower
+66,cayenne
+67,celery
+68,cereal
+69,cheese
+70,cherry
+71,chestnuts
+72,chicken
+73,chicken bouillon cube
+74,chicken breast
+75,chicken pieces
+76,chicken stock
+77,chickpeas
+78,chile
+79,chili
+80,chili powder
+81,chili sauce
+82,chip
+83,chips
+84,chives
+85,chocolate
+86,chops
+87,choy
+88,chuck
+89,chunks
+90,chutney
+91,cider
+92,cilantro
+93,cinnamon
+94,clams
+95,clove
+96,cocoa
+97,cocoa powder
+98,coconut
+99,coffee
+100,concentrate
+101,condensed cream of chicken soup
+102,condensed cream of mushroom soup
+103,cooked chicken breast
+104,cookies
+105,cooking spray
+106,coriander
+107,coriander powder
+108,corn
+109,corn flakes
+110,cornflour
+111,cornmeal
+112,cornstarch
+113,couscous
+114,crabmeat
+115,cracker
+116,cranberries
+117,cranberry juice
+118,cream
+119,cream of celery soup
+120,cream of chicken soup
+121,cream of mushroom soup
+122,creamer
+123,creole seasoning
+124,crisco
+125,crumb
+126,crushed red pepper flakes
+127,cucumber
+128,cumin
+129,cumin powder
+130,currants
+131,curry powder
+132,dates
+133,dill
+134,dogs
+135,dough
+136,dried italian seasoning
+137,dried onion flakes
+138,dried parsley flakes
+139,dry onion soup mix
+140,egg
+141,egg substitute
+142,egg white
+143,eggplant
+144,enchilada sauce
+145,espresso
+146,fat
+147,fat free sour cream
+148,feta
+149,fettuccine
+150,fillet
+151,filling
+152,fish sauce
+153,floret
+154,florets
+155,flour
+156,fraiche
+157,fresh lemon juice
+158,fresh lemon rind
+159,fresh lime juice
+160,fresh orange juice
+161,frosting
+162,frozen whipped topping
+163,fruit
+164,garlic
+165,garlic powder
+166,gelatin
+167,ghee
+168,ginger
+169,gingerroot
+170,gorgonzola
+171,graham cracker crumbs
+172,granular
+173,granules
+174,grapes
+175,gravy
+176,green food coloring
+177,greens
+178,grenadine
+179,guacamole
+180,gum
+181,half-and-half
+182,half-and-half cream
+183,halves
+184,ham
+185,hamburger
+186,hazelnuts
+187,heavy cream
+188,heavy whipping cream
+189,herbs
+190,hoisin sauce
+191,honey
+192,horseradish
+193,hot pepper sauce
+194,hot sauce
+195,ice
+196,ice cube
+197,italian dressing
+198,italian salad dressing
+199,italian seasoning
+200,jalapeno
+201,jam
+202,jelly
+203,juice and zest of
+204,juice of
+205,kahlua
+206,kale
+207,ketchup
+208,kielbasa
+209,krispies
+210,lamb
+211,lard
+212,leaf
+213,leave
+214,leek
+215,lemon
+216,lemon extract
+217,lemon juice
+218,lemon peel
+219,lemon rind
+220,lemon slice
+221,lemongrass
+222,lentils
+223,lettuce
+224,light cream
+225,light sour cream
+226,light soy sauce
+227,lime
+228,lime juice
+229,linguine
+230,liqueur
+231,liquid smoke
+232,loin
+233,low sodium soy sauce
+234,low-fat sour cream
+235,macaroni
+236,mace
+237,mango
+238,mangoes
+239,margarine
+240,marinara sauce
+241,marinated artichoke hearts
+242,marjoram
+243,marmalade
+244,marnier
+245,marshmallows
+246,masala
+247,mayonnaise
+248,meat
+249,milk
+250,mint
+251,mirin
+252,"mix"""
+253,molasses
+254,mushroom
+255,mushrooms
+256,mustard
+257,mustard powder
+258,nectar
+259,nonfat dry milk powder
+260,nonfat sour cream
+261,nonstick cooking spray
+262,noodles
+263,nutmeg
+264,nuts
+265,oatmeal
+266,oats
+267,oil
+268,okra
+269,old bay seasoning
+270,olive
+271,onion
+272,onion powder
+273,onion soup mix
+274,onions
+275,orange
+276,orange juice
+277,orange peel
+278,orange rind
+279,oregano
+280,oyster sauce
+281,pancetta
+282,paprika
+283,parsley
+284,parsley flakes
+285,parsnips
+286,pasta
+287,pasta sauce
+288,paste
+289,pastry
+290,pea
+291,peaches
+292,peanuts
+293,pear
+294,pears
+295,peas
+296,pecans
+297,pectin
+298,penne
+299,pepper
+300,peppercorn
+301,peppercorns
+302,pepperoni
+303,pesto sauce
+304,pickle
+305,pickles
+306,pie crust
+307,pimiento
+308,pineapple
+309,pineapple juice
+310,pistachios
+311,pizza sauce
+312,pods
+313,popcorn
+314,pork
+315,potato
+316,potatoes
+317,poultry seasoning
+318,prawns
+319,preserves
+320,prosciutto
+321,pudding
+322,pumpkin
+323,pure vanilla extract
+324,puree
+325,quinoa
+326,radish
+327,radishes
+328,raisin
+329,ranch dressing
+330,raspberries
+331,red chili powder
+332,red food coloring
+333,red pepper flakes
+334,reduced sodium soy sauce
+335,refrigerated crescent dinner rolls
+336,relish
+337,rhubarb
+338,rib
+339,rice
+340,rind of
+341,rosemary
+342,round
+343,rum
+344,saffron
+345,sage
+346,salami
+347,salmon
+348,salsa
+349,salt
+350,sauerkraut
+351,sausage
+352,scallion
+353,scallops
+354,schnapps
+355,seasoned bread crumbs
+356,seasoning
+357,sec
+358,seed
+359,shallot
+360,shell
+361,sherry
+362,shortening
+363,shoulder
+364,shrimp
+365,sirloin
+366,skewers
+367,skinless chicken breast
+368,soda
+369,sour cream
+370,soy sauce
+371,soymilk
+372,spaghetti
+373,spaghetti sauce
+374,spears
+375,spice
+376,spices
+377,spinach
+378,splenda sugar substitute
+379,spread
+380,sprig
+381,sprigs
+382,sprinkles
+383,sprout
+384,sprouts
+385,starch
+386,steak
+387,stick
+388,strawberry
+389,sugar
+390,sweetener
+391,syrup
+392,tabasco sauce
+393,taco seasoning
+394,taco seasoning mix
+395,tahini
+396,tarragon
+397,tartar
+398,tea
+399,tenderloin
+400,tenders
+401,tequila
+402,teriyaki sauce
+403,thighs
+404,thyme
+405,tofu
+406,tomato
+407,tomato juice
+408,tomato sauce
+409,tomato soup
+410,tortellini
+411,tortilla
+412,tortillas
+413,tuna
+414,turkey
+415,turmeric
+416,turmeric powder
+417,unsweetened cocoa powder
+418,vanilla
+419,vanilla essence
+420,vanilla extract
+421,vanilla ice cream
+422,vanilla instant pudding mix
+423,vegetable oil cooking spray
+424,vegetable shortening
+425,vegetable stock
+426,vegetables
+427,vermouth
+428,vinegar
+429,vodka
+430,wafers
+431,walnuts
+432,water
+433,watermelon
+434,wedge
+435,wedges
+436,weed
+437,wheat germ
+438,whip
+439,whipped cream
+440,whipped topping
+441,whipping cream
+442,whiskey
+443,white cake mix
+444,wine
+445,wings
+446,worcestershire sauce
+447,wrappers
+448,yeast
+449,yellow cake mix
+450,yellow squash
+451,yoghurt
+452,yogurt
+453,yolk
+454,zest
+455,zest of
+456,zucchini
