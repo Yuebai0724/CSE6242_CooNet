@@ -203,9 +203,9 @@ button:hover {
   position: absolute;
 }
 
-#tags {
-  width: 500px;
-  margin: -200px auto auto -250px;
+#tagcontainer2 {
+  width: 1000px;
+  margin: -200px auto auto -500px;
 }
 
 #myCheck {
@@ -286,4 +286,9 @@ button:hover {
 
 .navibar .naviimg img {
   padding: 0px;
+}
+
+input[type="checkbox"] {
+    background: red;
+    color: #F0BC5E;
 }
