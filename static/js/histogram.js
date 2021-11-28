@@ -69,7 +69,7 @@ function drawhistogram() {
     .attr("oninput", slider1).attr("step", "1").attr("tabindex", "0")
     .attr("type", "range").attr("value", "0")
     .appendTo(slidertotal);
-  $("<input>").attr("id", "slider-2").attr("max", "99").attr("min", "0")
+  $("<input>").attr("id", "slider-2").attr("max", "100").attr("min", "0")
     .attr("oninput", slider2).attr("step", "1").attr("tabindex", "0")
     .attr("type", "range").attr("value", "100")
     .appendTo(slidertotal);
@@ -82,9 +82,12 @@ function drawhistogram() {
   d3.json('/get-stats').then(function(data) {
     data = JSON.parse(data)
     // console.log(data.slice(1, 5))
-    let labels = Object.keys(data[0]).filter(function(d) {
-      return d !== 'Name'
-    });
+    var labels = ["rating","Calories (kcal)","Carbohydrates (g)","Protein (g)","Total fat (g)"];
+    var displaylabels = ["Rating","Calories","Carbohydrate","Protein","Fat"];
+    //
+    // let labels = Object.keys(data[0]).filter(function(d) {
+    //   return d !== 'Name'
+    // });
     // console.log('properties includes:', labels)
 
     //---------------------------------------------Add Statistic Button----------------------------------------//
@@ -106,18 +109,20 @@ function drawhistogram() {
       })
       .on('click', function(){
         updateHistogram(this.value, data);
+        handleSliderChange(data);
         })
       .append('text').text(function(d) {
         return d
       })
-    labels.append('text').text(function(d) {
-      return d
+    labels.append('text').text(function(d,i) {
+      return displaylabels[i]
     })
 
-    document.getElementById('Rating-button').setAttribute('checked', 'true')
+    document.getElementById('rating-button').setAttribute('checked', 'true')
 
     // Set default status
-    createHistogram('Rating', data);
+    createHistogram('rating', data);
+    handleSliderChange(data);
     d3.select('#slider-1').on('change', function(){handleSliderChange(data)})
     d3.select('#slider-2').on('change', function(){handleSliderChange(data)})
     let initialRecipeList = getRecipeList(data,'Rating', '0', '100', 5)
@@ -127,6 +132,8 @@ function drawhistogram() {
 };
 
 function createHistogram(statisticType, values) {
+  console.log(statisticType)
+  console.log(values)
   values = values.map(function(d) {
     return d[statisticType]
   })
@@ -354,11 +361,14 @@ function displayRecipeList(recipeList) {
   var ul = document.getElementById("recipelist");
   for (var i = 0; i < recipeList.length; i++) {
     var li = document.createElement("li");
+    li.setAttribute("id","recipe"+i);
     var a = document.createElement("a");
-    a.appendChild(document.createTextNode('·  ' + recipeList[i].Name));
+    a.appendChild(document.createTextNode('·  ' + recipeList[i].name));
     li.appendChild(a);
     li.onclick = function(){
-      recipe_open(this.children[0].innerHTML);
+      idx = +this.id.slice(6);
+      var recipe = recipeList[idx];
+      recipe_open(recipe);
     };
     li.classList.add('recipeentry')
     ul.appendChild(li);
@@ -387,12 +397,12 @@ function updateRecipeList(recipeList) {
 }
 
 /* open and update the recipe information window */
-function recipe_open(id) {
+function recipe_open(recipe) {
   // console.log($(this))
-
+  console.log(recipe)
   // change title
-  h1 = document.getElementById('recipecard').getElementsByTagName('h1')[0];
-  h1.innerHTML=id.slice(3);
+  h1 = document.getElementById('recipecard').getElementsByTagName('h3')[0];
+  h1.innerHTML=recipe.name;
 
   // change text
   var div = document.getElementById('recipeinfocontainer');
@@ -404,8 +414,8 @@ function recipe_open(id) {
 
   // add new ones
   var p = document.createElement('p');
-  // p.innerHTML = id.slice(3);
-  p.innerHTML = repeat(id.slice(3),1000);
+  p.innerHTML = recipe.steps;
+  // p.innerHTML = repeat(id.slice(3),1000);
   p.setAttribute('style','line-height: 1.5; letter-spacing: .1rem;')
 
   div.appendChild(p)

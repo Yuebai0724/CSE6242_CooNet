@@ -163,6 +163,7 @@
 
 .recipeentry {
   height: 30px;
+  width: 320px;
   padding: 5px;
   margin: 7px;
   font-size: 16px;
@@ -172,6 +173,7 @@
   border-color: #F0BC5E;
   border-width: medium;
   vertical-align: middle;
+  overflow: hidden;
 }
 
 .recipeentry:hover{
