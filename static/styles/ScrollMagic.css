@@ -152,6 +152,7 @@ h3 {
 	font-size: 16px;
 	font-family: "Skia";
 	font-weight: 600;
+	margin: 5px;
 }
 a, a:visited {
 	text-decoration: none;

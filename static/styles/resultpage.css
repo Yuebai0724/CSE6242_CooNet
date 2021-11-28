@@ -119,6 +119,8 @@
 
 .resultcontainer{
   /* top: 50px; */
+  width: 390px;
+  left: 5px;
   top:0px;
   bottom: 0px;
   position: absolute;
@@ -130,8 +132,14 @@
 .histcontainer {
   /* height: 30%; */
   /* flex-grow: 5; */
+  margin-top: 5px;
   height: fit-content;
   position: relative;
+}
+
+#histogram {
+  height: 400px;
+  width: 100%;
 }
 
 .recipecontainer {

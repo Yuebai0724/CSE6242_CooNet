@@ -46,8 +46,8 @@ d3.json("/get-ingredients")
 
     //console.log(d3.values(nodes));
 
-    let width = 2200,
-      height = 1800;
+    let width = 1000,
+      height = 1000;
 
     // Create the network graph by using d3.force
     let force = d3
