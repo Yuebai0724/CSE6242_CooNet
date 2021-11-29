@@ -17,6 +17,7 @@
 <script type="text/javascript" src="../static/lib/d3.v5.min.js"></script>
 <script type="text/javascript" src="../static/lib/ScrollMagic/jquery.min.js"></script>
 <script type="text/javascript" src="../static/lib/ScrollMagic/ScrollMagic.min.js"></script>
+<script type="text/javascript" src="../static/js/customerlist.js"></script>
 
 <title>CooNet - Homepage</title>
 <link rel="shortcut icon" href="../static/img/chef-hat.ico" type="image/x-icon">
@@ -86,24 +87,9 @@
 					</section>
 					<section class="panel black">
 						<div id='tagcontainer'>
-							<div id='tags'>
+							<div id="tagcontainer2">
 								<h1 style="color:#F0BC5E;font-size:200%">Choose your recipe genre:</h1>
-								<input type="checkbox" id="Asian">
-								<p id='tag'>Asian</p>
-								<input type="checkbox" id="Spanish">
-								<p id='tag'>Spanish</p><br>
-								<input type="checkbox" id="Mediterranean">
-								<p id='tag'>Mediterranean</p>
-								<input type="checkbox" id="American">
-								<p id='tag'>American</p> <br>
-								<input type="checkbox" id="France">
-								<p id='tag'>France</p>
-								<input type="checkbox" id="Veggiterian">
-								<p id='tag'>Veggiterian</p> <br>
-								<input type="checkbox" id="Healthy">
-								<p id='tag'>Healthy</p>
-								<input type="checkbox" id="Veggiterian">
-								<p id='tag'>Fast</p> <br>
+								<div id='tags' style="display:flex;flex-direction:row"></div>
 							</div>
 							<p id='Arrow' class="white2">↧</p>
 						</div>
@@ -125,28 +111,8 @@
 				</section>
 				<script type='text/javascript'>
 					var selectedlist = [];
-					var taglimit = 3;
 					var selectedtags = [];
 
-					// Add Ingredient list to select
-					d3.json('/ingredient-list')
-						.then(function(data) {
-							var ingredientlist = data;
-							for (var i = 0; i < ingredientlist.length; i++) {
-								var ul = document.getElementById("myMenu");
-								var li = document.createElement("li");
-								var a = document.createElement("a");
-								a.appendChild(document.createTextNode(ingredientlist[i].ingredient));
-								li.appendChild(a);
-								ul.appendChild(li);
-							};
-
-							$(".scrollbar li a").on("click", function() {
-								$(".scrollbar li a").removeClass('selected');
-								$(this).attr('class', 'selected');
-							});
-
-						});
 
 					// Scroll Magic Controller
 					$(function() { // wait for document ready
@@ -227,22 +193,6 @@
 							selected.parentElement.remove();
 						};
 					};
-
-					// Checkbox function
-					$('input[type=checkbox]').on('change', function(evt) {
-						if ($(this).siblings(':checked').length >= taglimit) {
-							this.checked = false;
-						} else {
-							var checkboxes = document.querySelectorAll('input[type=checkbox]');
-							var selectedtags = [];
-							for (var i = 0; i < checkboxes.length; i++) {
-								if (checkboxes[i].checked) {
-									selectedtags.push(checkboxes[i].id);
-								}
-							}
-							console.log(selectedtags);
-						}
-					});
 
 
 					function generateresult() {

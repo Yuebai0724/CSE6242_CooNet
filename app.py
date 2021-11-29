@@ -51,7 +51,7 @@ def homepage():
     """
     print("----request1----")
     Selected_ingredients = ['potatoes', 'beef', 'salt']
-    
+
     print(Selected_ingredients)
     data.Selected_ingredients = Selected_ingredients
     Input_tags = [1,1,1,1,1]
@@ -67,11 +67,11 @@ def homepage():
 
     network_data = frequency(df_frequency, Selected_ingredients, ingredients)
     #print(network_data)
-    
+
     d = {"name": "statistics", "data": []}
     with open('testData/statistic.json') as f:
         stats = json.load(f)
-    
+
     d['data']=stats
     e = json.dumps(d)
     data.Recipe_stats = json.loads(e)
@@ -80,26 +80,32 @@ def homepage():
     d2 = {"name": "network_data", "data": []}
     #with open('testData/ingredients.json') as f:
     #    Ingredients_recommend = json.load(f)
-    
+
     d2['data']=network_data
     e2 = json.dumps(d2)
     data.Network_data = json.loads(e2)
     print("---updated1---")
+
+
+    if request.method == 'POST':
+        print("try to jump to reuslt")
+        print(request.form['jumpto'])
+        return render_template(request.form['jumpto']+".html", Selected_ingredients = Selected_ingredients)
 
     return render_template("index.html", Selected_ingredients = Selected_ingredients)
 
 
 @application.route("/get-ingredients",methods=["GET","POST"])
 def get_ingredients():
-   
+
     Selected_ingredients = request.args.getlist('selected[]')
-    
+
     print("----request2----")
     print(request.args)
 
     if len(Selected_ingredients)==0:
         Selected_ingredients = data.Selected_ingredients
-    
+
     print(Selected_ingredients)
     data.Selected_ingredients = Selected_ingredients
 
@@ -112,7 +118,7 @@ def get_ingredients():
 
     network_data = frequency(df_frequency, Selected_ingredients, ingredients)
     d2 = {"name": "network_data", "data": []}
-    
+
     d2['data']=network_data
     e2 = json.dumps(d2)
     data.Network_data = json.loads(e2)
@@ -122,12 +128,30 @@ def get_ingredients():
     print("----get ingredients----")
     return jsonify(Network_data)
 
-
-
 @application.route("/get-stats",methods=["GET","POST"])
 def get_stats():
-    statistics=data.Recipe_stats
-    return jsonify(statistics)
+    with open('testData/statistic.json') as f:
+        stats = json.load(f)
+    return jsonify(stats)
+
+@application.route("/ingredient-list")
+def ingredient_list():
+    with open('realData/ingredient_list.json') as f:
+        stats = json.load(f)
+    return jsonify(stats)
+
+@application.route("/get-tags")
+def get_tags():
+    with open('realData/tag_list.json') as f:
+        stats = json.load(f)
+    return jsonify(stats)
+
+@application.route("/get-pred'")
+def get_prediction():
+    # with open('realData/tag_list.json') as f:
+    #     stats = json.load(f)
+    # return jsonify(stats)
+
 
 
 if __name__ == "__main__":
