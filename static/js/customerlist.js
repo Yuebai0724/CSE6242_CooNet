@@ -1,6 +1,7 @@
 // Add Ingredient list to select
-d3.json('/ingredient-list')
+d3.json('/get_ingredient_list')
   .then(function(data) {
+    //console.log(data)
     var ingredientlist = data;
     for (var i = 0; i < ingredientlist.length; i++) {
       var ul = document.getElementById("myMenu");
@@ -20,9 +21,9 @@ d3.json('/ingredient-list')
 
 
 // Add tags
-d3.json('/get-tags')
+d3.json('/get_tags')
   .then(function(data) {
-    console.log(data);
+    //console.log(data);
 
     tagboard = $('#tags')[0];
 

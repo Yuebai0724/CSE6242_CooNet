@@ -17,7 +17,7 @@
 <script type="text/javascript" src="../static/lib/d3.v5.min.js"></script>
 <script type="text/javascript" src="../static/lib/ScrollMagic/jquery.min.js"></script>
 <script type="text/javascript" src="../static/lib/ScrollMagic/ScrollMagic.min.js"></script>
-<script type="text/javascript" src="../static/js/customerlist.js"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/customerlist.js') }}"></script>
 
 <title>CooNet - Homepage</title>
 <link rel="shortcut icon" href="../static/img/chef-hat.ico" type="image/x-icon">
@@ -111,7 +111,7 @@
 				</section>
 				<script type='text/javascript'>
 					var selectedlist = [];
-					var selectedtags = [];
+					//	var selectedtags = [];
 
 
 					// Scroll Magic Controller
@@ -201,7 +201,7 @@
 						// seletedtag
 						console.log(selectedlist)
 						console.log(selectedtags)
-						$.getJSON($SCRIPT_ROOT + '/get_ingredients', {
+						$.getJSON($SCRIPT_ROOT + '/generate_result', {
 							selected: selectedlist,
 							tags: selectedtags
 						}, function(data) {

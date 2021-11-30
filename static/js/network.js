@@ -7,18 +7,12 @@ function drawnetwork(){
 
 d3.select('#network-id').remove();
 
-d3.json("/get-ingredients")
+d3.json("/get_network_data")
   .then(function (data) {
     data = data['data']
     let links = JSON.parse(data);
-    // links = links.forEach(function (link) {
-    //   link.is_source_selected = parseInt(link.is_source_selected)
-    //   link.is_target_selected = parseInt(link.is_target_selected_selected)
-    // })
-    // console.log(links);
 
     let nodes = {};
-
     // compute the distinct nodes from the links.
     links.forEach(function (link) {
       link.source =
@@ -232,69 +226,13 @@ function Clicked(d) {
   selected_ingredients= [...new Set(selected_ingredients)];
   console.log(selected_ingredients);
 
-  $.getJSON($SCRIPT_ROOT + '/get-ingredients', {
+  $.getJSON($SCRIPT_ROOT + '/update_result', {
     selected: selected_ingredients
   }, function(data) {
     //$("#result").text(data.result);
   });
   drawnetwork();
-
-// drawhistogram()
-// drawcard()
+  drawhistogram();
+  //updateinfocard();
 }
 
-// function update_data(){
-//   $.getJSON($SCRIPT_ROOT + '/get-ingredients', {
-//     selected: selected_ingredients
-//   }, function(data) {
-//     //$("#result").text(data.result);
-//   });
-//   drawnetwork();
-
-//   // get recipe data
-//   // drawhistogram()
-// }
-
-/*$(function() {
-  $('input[name="submit"]').bind('click', function() {
-
-    $.getJSON($SCRIPT_ROOT + '/get-ingredients', {
-      selected: selected_ingredients
-    }, function(data) {
-      //$("#result").text(data.result);
-    });
-    drawnetwork();
-
-    $.ajax({
-      url:"/get-ingredients",
-      type: "POST",
-      dataType: "json",
-      success: function(data){
-          //$(new_text).replaceWith(data)
-      }
-
-      });
-    return false;
-  });
-});
-*/
-
-
-/*$(function(){
-  $('input[name="submit"]').bind('click', function(){
-    loadNewNetwork()
-},9999)
-
-
-function loadNewNetwork(){
-$.ajax({
-  url:"/update_network",
-  type: "POST",
-  dataType: "json",
-  success: function(data){
-      //$(new_text).replaceWith(data)
-  }
-
-  });
-}
-});*/

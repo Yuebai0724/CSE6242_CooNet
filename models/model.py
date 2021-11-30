@@ -35,4 +35,13 @@ class Model():
         return output
     # output: dataframe, columns: 'name'(recommended ingredients), 'rating_prediction'
 
+    def rating_prediction(self, ingredients: list, cluster_id: int) -> float:
+
+        file_name = 'model_' + str(cluster_id) + '.txt'
+        bst = lgb.Booster(model_file=file_name)
+        prediction = bst.predict([ingredients])
+        output = prediction.tolist()[0]
+
+        return output
+
 

@@ -79,7 +79,9 @@ function drawhistogram() {
 
   d3.select('#histogram-area').append('div').attr('id', 'histogram');
 
-  d3.json('/get-stats').then(function(data) {
+  d3.json('/get_stats').then(function(data) {
+    data = data['data']
+    console.log(data)
     data = JSON.parse(data)
     // console.log(data.slice(1, 5))
     var labels = ["rating","Calories (kcal)","Carbohydrates (g)","Protein (g)","Total fat (g)"];
