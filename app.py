@@ -57,8 +57,6 @@ def result_page():
 
 @app.route("/get_ingredient_list")
 def get_ingredient_list():
-    print("!!!!!PRINT!!!!!")
-    print(df_database.head())
     with open('realData/ingredient_list.json') as f:
         ingredient_list = json.load(f)
     return jsonify(ingredient_list)
@@ -75,6 +73,10 @@ def get_tags():
 def generate_result():
     data.Network_data = None
     data.Recipe_stats = None
+    df_frequency = pd.read_csv("realData/frequency.csv")
+    df_database = pd.read_csv("realData/database.csv")
+    print("!!!!!PRINT!!!!!")
+    print(df_database.head())
     
     #-----get selected ingredients & input tags-----#
     print("-------request1-------")
@@ -123,6 +125,10 @@ def generate_result():
 def update_result():
     data.Network_data = None
     data.Recipe_stats = None
+    df_frequency = pd.read_csv("realData/frequency.csv")
+    df_database = pd.read_csv("realData/database.csv")
+    print("!!!!!PRINT!!!!!")
+    print(df_database.head())
 
     #-----get selected ingredients & input tags-----#
     print("-------request2-------")
