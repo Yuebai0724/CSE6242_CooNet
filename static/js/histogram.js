@@ -81,7 +81,7 @@ function drawhistogram() {
 
   d3.json('/get_stats').then(function(data) {
     data = data['data']
-    console.log(data)
+    //console.log(data)
     data = JSON.parse(data)
     // console.log(data.slice(1, 5))
     var labels = ["rating","Calories (kcal)","Carbohydrates (g)","Protein (g)","Total fat (g)"];

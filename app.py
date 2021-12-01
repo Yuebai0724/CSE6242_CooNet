@@ -36,22 +36,6 @@ def generate_tags(string_tags):
                 integer_tags[i-1] = index[0]+1
     return integer_tags
 
-def waitfor_network_data(): #defines function
-    wU = True
-    while wU == True:
-        if data.Network_data is not None: #checks the condition
-            wU = False
-        time.sleep(0.25)
-    return data.Network_data
-
-def waitfor_statistics(): #defines function
-    wU = True
-    while wU == True:
-        if data.Recipe_stats is not None: #checks the condition
-            wU = False
-        time.sleep(0.25)
-    return data.Recipe_stats
-
 
 @app.route("/main",methods=["GET","POST"])
 
@@ -175,18 +159,26 @@ def update_result():
 
 @app.route("/get_network_data",methods=["GET","POST"])
 def get_network_data():
-    #time.sleep(2)
-    Network_data = waitfor_network_data()
-    #Network_data=data.Network_data
+    wait = True
+    while wait == True:
+        if data.Network_data is not None: #checks the condition
+            wait = False
+        time.sleep(0.2)
+    
+    Network_data = data.Network_data
     print("-------get network data-------")
     return jsonify(Network_data)
 
 
 @app.route("/get_stats",methods=["GET","POST"])
 def get_stats():
-    #time.sleep(2)
-    statistics = waitfor_statistics()
-    #statistics=data.Recipe_stats
+    wait = True
+    while wait == True:
+        if data.Recipe_stats is not None: #checks the condition
+            wait = False
+        time.sleep(0.2)
+
+    statistics = data.Recipe_stats
     print("-------get statistics-------")
     return jsonify(statistics)
 
