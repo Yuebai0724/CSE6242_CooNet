@@ -4,12 +4,12 @@ import json
 import time
 from models.model import Model
 from models.TW_freq_filter import frequency, recipeFilter
-import zipfile
+#import zipfile
 
 
-zf = zipfile.ZipFile('realData/database.csv.zip') 
+#zf = zipfile.ZipFile('realData/database.csv.zip') 
 df_frequency = pd.read_csv("realData/frequency.csv")
-df_database = pd.read_csv(zf.open('database.csv'))
+big_df1 = pd.read_csv("realData/Part1.csv")
 
 #1. Declare application
 app= Flask(__name__)
@@ -75,8 +75,7 @@ def generate_result():
     data.Network_data = None
     data.Recipe_stats = None
     print("~~~!!!PRINT!!!!!")
-    print(df_frequency.head())
-    print(df_database.iloc[1])
+    print(big_df1.iloc[1])
     
     #-----get selected ingredients & input tags-----#
     print("-------request1-------")
@@ -104,7 +103,13 @@ def generate_result():
     ingredients = output['name'].tolist()
     print("Recommended ingredients: ", ingredients)
     network_data = frequency(df_frequency, Selected_ingredients, ingredients)
-    Recipe_stats = recipeFilter(df_database, Selected_ingredients)
+    Recipe_stats1 = recipeFilter(big_df1, Selected_ingredients)
+
+    time.sleep(0.3)
+
+    big_df2 = pd.read_csv("realData/Part2.csv")
+    Recipe_stats2 = recipeFilter(big_df2, Selected_ingredients)
+    Recipe_stats = Recipe_stats1.append(Recipe_stats2, ignore_index=True)
     Recipe_stats = Recipe_stats.to_json(orient='records') 
 
     #-----store results-----#
@@ -126,7 +131,7 @@ def update_result():
     data.Network_data = None
     data.Recipe_stats = None
     print("~~!!!PRINT!!!!!")
-    print(df_database.head())
+    print(big_df1.head())
 
     #-----get selected ingredients & input tags-----#
     print("-------request2-------")
@@ -146,7 +151,7 @@ def update_result():
     ingredients = output['name'].tolist()
     print("Recommended ingredients: ", ingredients)
     network_data = frequency(df_frequency, Selected_ingredients, ingredients)
-    Recipe_stats = recipeFilter(df_database, Selected_ingredients)
+    Recipe_stats = recipeFilter(big_df1, Selected_ingredients)
     Recipe_stats = Recipe_stats.to_json(orient='records') 
 
     #-----store results-----#
