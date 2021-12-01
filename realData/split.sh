@@ -1,7 +1,7 @@
 #!/bin/bash
 FILENAME=database.csv
 HDR=$(head -1 $FILENAME)
-split -l 80000 $FILENAME xyz
+split -l 50000 $FILENAME xyz
 n=1
 for f in xyz*
 do
