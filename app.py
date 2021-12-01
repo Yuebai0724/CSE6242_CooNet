@@ -10,6 +10,7 @@ from models.TW_freq_filter import frequency, recipeFilter
 #zf = zipfile.ZipFile('realData/database.csv.zip') 
 df_frequency = pd.read_csv("realData/frequency.csv")
 big_df1 = pd.read_csv("realData/Part1.csv")
+big_df2 = pd.read_csv("realData/Part2.csv")
 
 #1. Declare application
 app= Flask(__name__)
@@ -75,15 +76,14 @@ def generate_result():
     data.Network_data = None
     data.Recipe_stats = None
     print("~~~!!!PRINT!!!!!")
-    print(big_df1.iloc[1])
+    print(big_df1['name'].iloc[1])
     
     #-----get selected ingredients & input tags-----#
     print("-------request1-------")
-    print(request.args)
     Selected_ingredients = request.args.getlist('selected[]')
     string_tags = request.args.getlist('tags[]')
     integer_tags = generate_tags(string_tags)
-    print(string_tags)
+    #print(string_tags)
 
     if len(Selected_ingredients)==0:
         Selected_ingredients = data.Selected_ingredients
@@ -98,16 +98,15 @@ def generate_result():
     model = Model()
     cluster_id = model.cluster(integer_tags)
     data.Cluster_ID = cluster_id[0]+1
-    print("Cluster id: ", cluster_id)
+    #print("Cluster id: ", cluster_id)
     output = model.regression(Selected_ingredients,cluster_id=cluster_id[0]+1)
     ingredients = output['name'].tolist()
     print("Recommended ingredients: ", ingredients)
     network_data = frequency(df_frequency, Selected_ingredients, ingredients)
     Recipe_stats1 = recipeFilter(big_df1, Selected_ingredients)
 
-    time.sleep(0.3)
+    time.sleep(0.2)
 
-    big_df2 = pd.read_csv("realData/Part2.csv")
     Recipe_stats2 = recipeFilter(big_df2, Selected_ingredients)
     Recipe_stats = Recipe_stats1.append(Recipe_stats2, ignore_index=True)
     Recipe_stats = Recipe_stats.to_json(orient='records') 
@@ -130,12 +129,10 @@ def generate_result():
 def update_result():
     data.Network_data = None
     data.Recipe_stats = None
-    print("~~!!!PRINT!!!!!")
-    print(big_df1.head())
 
     #-----get selected ingredients & input tags-----#
     print("-------request2-------")
-    print(request.args)
+    #print(request.args)
     Selected_ingredients = request.args.getlist('selected[]')
 
     if len(Selected_ingredients)==0:
