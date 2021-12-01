@@ -168,10 +168,11 @@ def update_result():
 @app.route("/get_network_data",methods=["GET","POST"])
 def get_network_data():
     wait = True
-    while wait == True:
+    mustend = time.time() + 60
+    while wait == True and time.time()<mustend:
         if data.Network_data is not None: #checks the condition
             wait = False
-        time.sleep(0.2)
+        time.sleep(0.1)
     
     Network_data = data.Network_data
     print("-------get network data-------")
@@ -181,10 +182,11 @@ def get_network_data():
 @app.route("/get_stats",methods=["GET","POST"])
 def get_stats():
     wait = True
-    while wait == True:
+    mustend = time.time() + 60
+    while wait == True and time.time()<mustend:
         if data.Recipe_stats is not None: #checks the condition
             wait = False
-        time.sleep(0.2)
+        time.sleep(0.1)
 
     statistics = data.Recipe_stats
     print("-------get statistics-------")
