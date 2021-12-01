@@ -169,9 +169,11 @@ def update_result():
 def get_network_data():
     wait = True
     mustend = time.time() + 60
-    while wait == True and time.time()<mustend:
+    while wait == True:
         if data.Network_data is not None: #checks the condition
             wait = False
+        if time.time()>=mustend:
+            break
         time.sleep(0.1)
     
     Network_data = data.Network_data
@@ -183,9 +185,11 @@ def get_network_data():
 def get_stats():
     wait = True
     mustend = time.time() + 60
-    while wait == True and time.time()<mustend:
+    while wait == True:
         if data.Recipe_stats is not None: #checks the condition
             wait = False
+        if time.time()>=mustend:
+            break
         time.sleep(0.1)
 
     statistics = data.Recipe_stats
