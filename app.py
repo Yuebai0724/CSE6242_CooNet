@@ -8,6 +8,7 @@ from models.TW_freq_filter import frequency, recipeFilter
 
 df_frequency = pd.read_csv("realData/frequency.csv")
 df_database = pd.read_csv("realData/database.csv")
+print("!!!!!PRINT!!!!!")
 print(df_database.head())
 
 #1. Declare application
