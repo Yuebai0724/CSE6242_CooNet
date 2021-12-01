@@ -36,14 +36,6 @@ def generate_tags(string_tags):
                 integer_tags[i-1] = index[0]+1
     return integer_tags
 
-def wait_until(data, timeout, period=0.25):
-  mustend = time.time() + timeout
-  while time.time() < mustend:
-    if data is not None: 
-        return True
-    time.sleep(period)
-  return False
-
 def waitfor_network_data(): #defines function
     wU = True
     while wU == True:
