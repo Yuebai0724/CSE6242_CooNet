@@ -45,7 +45,7 @@ def frequency(df,selected,recommended):
        
         df = df.iloc[idx_1:]
         df_a = df[(df.source == a)]
-        inx = df_a.index[-1]
+        #inx = df_a.index[-1]
         
         for b in ingreList[i+1:]:
             df_ab = df_a[(df_a.target == b)]

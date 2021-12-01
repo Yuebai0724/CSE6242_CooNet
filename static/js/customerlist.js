@@ -72,7 +72,7 @@ d3.json('/get_tags')
         this.checked = false;
       } else {
         var checkboxes = document.querySelectorAll('input[type=checkbox]');
-        var selectedtags = [];
+        //var selectedtags = [];
         for (var i = 0; i < checkboxes.length; i++) {
           if (checkboxes[i].checked) {
             selectedtags.push(checkboxes[i].id);

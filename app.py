@@ -1,11 +1,7 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 import pandas as pd
 import json
 import time
-import pickle
-import lightgbm as lgb
-from itertools import combinations
-from collections import Counter, defaultdict
 from models.model import Model
 from models.TW_freq_filter import frequency, recipeFilter
 
@@ -48,11 +44,15 @@ def generate_tags(string_tags):
 @application.route("/",methods=["GET","POST"])
 def homepage():
     if request.method == 'POST':
-        print("try to jump to result")
-        print(request.form['jumpto'])
-        return render_template(request.form['jumpto']+".html")
-
+        print("Jump to result page...")
+        return redirect(url_for('result_page'))
+        #return render_template("Result.html")
     return render_template("index.html")
+
+
+@application.route("/result_page",methods=["GET","POST"])
+def result_page():
+    return render_template("Result.html")
 
 
 @application.route("/get_ingredient_list")
@@ -72,7 +72,7 @@ def get_tags():
 @application.route("/generate_result",methods=["GET","POST"])
 def generate_result():
     #-----get selected ingredients & input tags-----#
-    print("-------request-------")
+    print("-------request1-------")
     print(request.args)
     Selected_ingredients = request.args.getlist('selected[]')
     string_tags = request.args.getlist('tags[]')
@@ -91,9 +91,9 @@ def generate_result():
     #-----use model to predict results-----#
     model = Model()
     cluster_id = model.cluster(integer_tags)
-    data.Cluster_ID = cluster_id[0]
+    data.Cluster_ID = cluster_id[0]+1
     print("Cluster id: ", cluster_id)
-    output = model.regression(Selected_ingredients,cluster_id=cluster_id[0])
+    output = model.regression(Selected_ingredients,cluster_id=cluster_id[0]+1)
     ingredients = output['name'].tolist()
     print("Recommended ingredients: ", ingredients)
     network_data = frequency(df_frequency, Selected_ingredients, ingredients)
@@ -110,14 +110,14 @@ def generate_result():
     d3['data']=Recipe_stats
     e3 = json.dumps(d3)
     data.Recipe_stats = json.loads(e3)
-    print("-------updated-------")
+    print("-------updated1-------")
     return render_template("Result.html")
 
 
 @application.route("/update_result",methods=["GET","POST"])
 def update_result():
     #-----get selected ingredients & input tags-----#
-    print("-------request-------")
+    print("-------request2-------")
     print(request.args)
     Selected_ingredients = request.args.getlist('selected[]')
 
@@ -147,13 +147,13 @@ def update_result():
     d3['data']=Recipe_stats
     e3 = json.dumps(d3)
     data.Recipe_stats = json.loads(e3)
-    print("-------updated-------")
+    print("-------updated2-------")
     return render_template("Result.html")
 
 
 @application.route("/get_network_data",methods=["GET","POST"])
 def get_network_data():
-    time.sleep(3)
+    time.sleep(2)
     Network_data=data.Network_data
     print("-------get network data-------")
     return jsonify(Network_data)
@@ -161,7 +161,7 @@ def get_network_data():
 
 @application.route("/get_stats",methods=["GET","POST"])
 def get_stats():
-    time.sleep(3)
+    time.sleep(2)
     statistics=data.Recipe_stats
     print("-------get statistics-------")
     return jsonify(statistics)

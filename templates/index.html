@@ -9,18 +9,18 @@
 	$SCRIPT_ROOT = {{ request.script_root | tojson }};
 </script>
 
-<link rel="stylesheet" href="../static/styles/normalize.css" type="text/css">
-<link rel="stylesheet" href="../static/styles/fonts.css" type="text/css">
-<link rel="stylesheet" href="../static/styles/ScrollMagic.css" type="text/css">
-<link rel="stylesheet" href="../static/styles/homepage.css" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/normalize.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/fonts.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/ScrollMagic.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/homepage.css') }}" type="text/css">
 
-<script type="text/javascript" src="../static/lib/d3.v5.min.js"></script>
-<script type="text/javascript" src="../static/lib/ScrollMagic/jquery.min.js"></script>
-<script type="text/javascript" src="../static/lib/ScrollMagic/ScrollMagic.min.js"></script>
-<script type="text/javascript" src="{{ url_for('static',filename='js/customerlist.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='lib/d3.v5.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='lib/ScrollMagic/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='lib/ScrollMagic/ScrollMagic.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/customerlist.js') }}"></script>
 
 <title>CooNet - Homepage</title>
-<link rel="shortcut icon" href="../static/img/chef-hat.ico" type="image/x-icon">
+<link rel="shortcut icon" href="{{ url_for('static', filename='img/chef-hat.ico') }}" type="image/x-icon">
 
 </head>
 
@@ -33,9 +33,9 @@
 					<section class='panel' id="titlechart">
 						<div class='navibar'>
 							<div class="naviimg">
-								<img src="../static/img/logo.png" style="width:75px;height:75px;margin-left:20px;">
-								<img src="../static/img/name.png" style="width:150px;height:75px;">
-								<img src="../static/img/GeorgiaTech.png" style="width:216px;height:75px;">
+								<img src="{{ url_for('static', filename='img/logo.png') }}" style="width:75px;height:75px;margin-left:20px;">
+								<img src="{{ url_for('static', filename='img/name.png') }}" style="width:150px;height:75px;">
+								<img src="{{ url_for('static', filename='img/GeorgiaTech.png') }}" style="width:216px;height:75px;">
 							</div>
 							<div class="topnav">
 								<a id="menuitem" href="#contact">About</a>
@@ -54,10 +54,10 @@
 								<form method="POST"><button class="viewsource" name="jumpto" value="GroupInfo" style="background:none;border:none">{ Our Group }</button></form><br>
 							</div>
 							<div id="imagecontainer">
-								<img src="../static/img/cluster.png" alt="clustering" style="width:100px;height:100px;">
-								<img src="../static/img/predictive-chart.png" alt="prediction" style="width:100px;height:100px;">
-								<img src="../static/img/network.png" alt="visualizing network" style="width:100px;height:100px;">
-								<img src="../static/img/customs.png" alt="customization of recipe" style="width:100px;height:100px;">
+								<img src="{{ url_for('static', filename='img/cluster.png') }}" alt="clustering" style="width:100px;height:100px;">
+								<img src="{{ url_for('static', filename='img/predictive-chart.png') }}" alt="prediction" style="width:100px;height:100px;">
+								<img src="{{ url_for('static', filename='img/network.png') }}" alt="visualizing network" style="width:100px;height:100px;">
+								<img src="{{ url_for('static', filename='img/customs.png') }}" alt="customization of recipe" style="width:100px;height:100px;">
 							</div>
 							<p id='Arrow'>↧</p>
 						</div>
@@ -102,7 +102,7 @@
 										and Coo<span style="font-size:100%;color:#F0BC5E">l</span>
 										:D</h1>
 									<form method="POST">
-										<button id="startbtn" onclick="generateresult()" name="jumpto" value="Result">Start!</button>
+										<button id="startbtn" onclick=generateresult() name="getResult" value="Result">Start!</button>
 									</form>
 								</div>
 							</div>
@@ -111,7 +111,7 @@
 				</section>
 				<script type='text/javascript'>
 					var selectedlist = [];
-					//	var selectedtags = [];
+					var selectedtags = [];
 
 
 					// Scroll Magic Controller
@@ -194,25 +194,31 @@
 						};
 					};
 
-
+					
 					function generateresult() {
 						// upload Data
 						// selectedlist
 						// seletedtag
+						console.log("generate result...")
 						console.log(selectedlist)
 						console.log(selectedtags)
+						//$('button[id="startbtn"]').bind('click', function() {
 						$.getJSON($SCRIPT_ROOT + '/generate_result', {
 							selected: selectedlist,
 							tags: selectedtags
 						}, function(data) {
-							//$("#result").text(data.result);
+						//$("#result").text(data.result);
 						});
+						return false;
+						//});
 					}
+					
 				</script>
 				</section>
 			</div>
 		</div>
 	</div>
+	<script src="{{ url_for('static', filename='lib/jquery.js') }}"></script>
 </body>
 
 </html>

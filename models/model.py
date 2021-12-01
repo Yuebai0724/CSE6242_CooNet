@@ -45,3 +45,5 @@ class Model():
         return output
 
 
+#model = Model()
+#print(model.cluster([3, 4, 3, 2, 0]) )
