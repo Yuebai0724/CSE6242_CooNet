@@ -11,7 +11,7 @@ df_database = pd.read_csv("realData/database.csv")
 
 
 #1. Declare application
-application= Flask(__name__)
+app= Flask(__name__)
 
 #2. Declare data stores
 class DataStore():
@@ -36,12 +36,36 @@ def generate_tags(string_tags):
                 integer_tags[i-1] = index[0]+1
     return integer_tags
 
+def wait_until(data, timeout, period=0.25):
+  mustend = time.time() + timeout
+  while time.time() < mustend:
+    if data is not None: 
+        return True
+    time.sleep(period)
+  return False
 
-@application.route("/main",methods=["GET","POST"])
+def waitfor_network_data(): #defines function
+    wU = True
+    while wU == True:
+        if data.Network_data is not None: #checks the condition
+            wU = False
+        time.sleep(0.25)
+    return data.Network_data
+
+def waitfor_statistics(): #defines function
+    wU = True
+    while wU == True:
+        if data.Recipe_stats is not None: #checks the condition
+            wU = False
+        time.sleep(0.25)
+    return data.Recipe_stats
+
+
+@app.route("/main",methods=["GET","POST"])
 
 
 #3. Define main code
-@application.route("/",methods=["GET","POST"])
+@app.route("/",methods=["GET","POST"])
 def homepage():
     if request.method == 'POST':
         print("Jump to result page...")
@@ -50,27 +74,30 @@ def homepage():
     return render_template("index.html")
 
 
-@application.route("/result_page",methods=["GET","POST"])
+@app.route("/result_page",methods=["GET","POST"])
 def result_page():
     return render_template("Result.html")
 
 
-@application.route("/get_ingredient_list")
+@app.route("/get_ingredient_list")
 def get_ingredient_list():
     with open('realData/ingredient_list.json') as f:
         ingredient_list = json.load(f)
     return jsonify(ingredient_list)
 
 
-@application.route("/get_tags")
+@app.route("/get_tags")
 def get_tags():
     with open('realData/tag_list.json') as f:
         tags = json.load(f)
     return jsonify(tags)
 
 
-@application.route("/generate_result",methods=["GET","POST"])
+@app.route("/generate_result",methods=["GET","POST"])
 def generate_result():
+    data.Network_data = None
+    data.Recipe_stats = None
+    
     #-----get selected ingredients & input tags-----#
     print("-------request1-------")
     print(request.args)
@@ -114,8 +141,11 @@ def generate_result():
     return render_template("Result.html")
 
 
-@application.route("/update_result",methods=["GET","POST"])
+@app.route("/update_result",methods=["GET","POST"])
 def update_result():
+    data.Network_data = None
+    data.Recipe_stats = None
+
     #-----get selected ingredients & input tags-----#
     print("-------request2-------")
     print(request.args)
@@ -151,23 +181,25 @@ def update_result():
     return render_template("Result.html")
 
 
-@application.route("/get_network_data",methods=["GET","POST"])
+@app.route("/get_network_data",methods=["GET","POST"])
 def get_network_data():
-    time.sleep(2)
-    Network_data=data.Network_data
+    #time.sleep(2)
+    Network_data = waitfor_network_data()
+    #Network_data=data.Network_data
     print("-------get network data-------")
     return jsonify(Network_data)
 
 
-@application.route("/get_stats",methods=["GET","POST"])
+@app.route("/get_stats",methods=["GET","POST"])
 def get_stats():
-    time.sleep(2)
-    statistics=data.Recipe_stats
+    #time.sleep(2)
+    statistics = waitfor_statistics()
+    #statistics=data.Recipe_stats
     print("-------get statistics-------")
     return jsonify(statistics)
 
 
-@application.route("/get_prediction")
+@app.route("/get_prediction")
 def get_prediction():
     Selected_ingredients = data.Selected_ingredients
     cluster_id = data.Cluster_ID
@@ -178,4 +210,4 @@ def get_prediction():
 
 
 if __name__ == "__main__":
-    application.run(debug=True)
+    app.run(debug=True)
