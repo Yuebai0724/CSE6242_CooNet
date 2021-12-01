@@ -6,9 +6,6 @@ from models.model import Model
 from models.TW_freq_filter import frequency, recipeFilter
 
 
-df_frequency = pd.read_csv("realData/frequency.csv", sep=",")
-df_database = pd.read_csv("realData/database.csv", sep=",")
-
 
 #1. Declare application
 app= Flask(__name__)
@@ -73,8 +70,8 @@ def get_tags():
 def generate_result():
     data.Network_data = None
     data.Recipe_stats = None
-    df_frequency = pd.read_csv("realData/frequency.csv", sep=",")
-    df_database = pd.read_csv("realData/database.csv", sep=",")
+    df_frequency = pd.read_csv("frequency.csv", sep=",")
+    df_database = pd.read_csv("database.csv", sep=",")
     print("~~~!!!PRINT!!!!!")
     print(df_database.head())
     
@@ -125,9 +122,9 @@ def generate_result():
 def update_result():
     data.Network_data = None
     data.Recipe_stats = None
-    #df_frequency = pd.read_csv("realData/frequency.csv")
-    #df_database = pd.read_csv("realData/database.csv")
-    print("!!!!!PRINT!!!!!")
+    df_frequency = pd.read_csv("realData/frequency.csv")
+    df_database = pd.read_csv("realData/database.csv")
+    print("~~!!!PRINT!!!!!")
     print(df_database.head())
 
     #-----get selected ingredients & input tags-----#
