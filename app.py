@@ -11,6 +11,7 @@ from models.TW_freq_filter import frequency, recipeFilter
 df_frequency = pd.read_csv("realData/frequency.csv")
 big_df1 = pd.read_csv("realData/Part1.csv")
 big_df2 = pd.read_csv("realData/Part2.csv")
+big_df3 = pd.read_csv("realData/Part3.csv")
 
 #1. Declare application
 app= Flask(__name__)
@@ -75,7 +76,7 @@ def get_tags():
 def generate_result():
     data.Network_data = None
     data.Recipe_stats = None
-    print("~~~!!!PRINT!!!!!")
+    print("------check data------")
     print(big_df1['name'].iloc[1])
     
     #-----get selected ingredients & input tags-----#
@@ -106,9 +107,11 @@ def generate_result():
     Recipe_stats1 = recipeFilter(big_df1, Selected_ingredients)
 
     time.sleep(0.2)
-
     Recipe_stats2 = recipeFilter(big_df2, Selected_ingredients)
-    Recipe_stats = Recipe_stats1.append(Recipe_stats2, ignore_index=True)
+    
+    time.sleep(0.2)
+    Recipe_stats3 = recipeFilter(big_df3, Selected_ingredients)
+    Recipe_stats = pd.concat([Recipe_stats1, Recipe_stats2, Recipe_stats3], sort=False)
     Recipe_stats = Recipe_stats.to_json(orient='records') 
 
     #-----store results-----#
@@ -132,7 +135,6 @@ def update_result():
 
     #-----get selected ingredients & input tags-----#
     print("-------request2-------")
-    #print(request.args)
     Selected_ingredients = request.args.getlist('selected[]')
 
     if len(Selected_ingredients)==0:
@@ -148,7 +150,14 @@ def update_result():
     ingredients = output['name'].tolist()
     print("Recommended ingredients: ", ingredients)
     network_data = frequency(df_frequency, Selected_ingredients, ingredients)
-    Recipe_stats = recipeFilter(big_df1, Selected_ingredients)
+    Recipe_stats1 = recipeFilter(big_df1, Selected_ingredients)
+
+    time.sleep(0.2)
+    Recipe_stats2 = recipeFilter(big_df2, Selected_ingredients)
+    
+    time.sleep(0.2)
+    Recipe_stats3 = recipeFilter(big_df3, Selected_ingredients)
+    Recipe_stats = pd.concat([Recipe_stats1, Recipe_stats2, Recipe_stats3], sort=False)
     Recipe_stats = Recipe_stats.to_json(orient='records') 
 
     #-----store results-----#
