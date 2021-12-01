@@ -73,7 +73,8 @@ def generate_result():
     df_frequency = pd.read_csv("frequency.csv", sep=",")
     df_database = pd.read_csv("database.csv", sep=",")
     print("~~~!!!PRINT!!!!!")
-    print(df_database.head())
+    print(df_frequency.head())
+    print(df_database.iloc[1])
     
     #-----get selected ingredients & input tags-----#
     print("-------request1-------")
