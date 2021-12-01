@@ -73,9 +73,9 @@ def get_tags():
 def generate_result():
     data.Network_data = None
     data.Recipe_stats = None
-    #df_frequency = pd.read_csv("realData/frequency.csv", sep=",")
-    #df_database = pd.read_csv("realData/database.csv")
-    print("!!!!!PRINT!!!!!")
+    df_frequency = pd.read_csv("realData/frequency.csv", sep=",")
+    df_database = pd.read_csv("realData/database.csv", sep=",")
+    print("~~~!!!PRINT!!!!!")
     print(df_database.head())
     
     #-----get selected ingredients & input tags-----#
