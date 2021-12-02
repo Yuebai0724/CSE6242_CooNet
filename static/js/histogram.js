@@ -15,7 +15,7 @@ let padding={
 let width = w - padding.left - padding.right;
 let height = h - padding.top - padding.bottom;
 
-drawhistogram()
+//drawhistogram()
 
 //-----------------------------------------------Draw histogram---------------------------------------------------//
 function drawhistogram() {

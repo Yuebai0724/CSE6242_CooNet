@@ -1,7 +1,7 @@
 
 //-------------------------------------------Parse Data---------------------------------------------//
 var selected_ingredients = [];
-drawnetwork();
+//drawnetwork();
 
 function drawnetwork(){
 
