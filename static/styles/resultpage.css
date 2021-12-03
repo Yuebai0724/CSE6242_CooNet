@@ -30,9 +30,8 @@
   /* top: 10%; */
   background-color: #fff;
   position: fixed;
-  overflow: auto
+  overflow: auto;
   float:right;
-  right:0;
   z-index:10;
   transition: visibility 0s linear 0.33s, opacity 0.33s linear;
 
@@ -101,13 +100,13 @@
   left: 20px;
   position: fixed;
   z-index: -1;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
-#infocard:hover{
+/* #infocard:hover{
   opacity: 0.3;
   z-index: -1;
-}
+} */
 
 /* Result side bar */
 

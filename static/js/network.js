@@ -1,7 +1,7 @@
 
 //-------------------------------------------Parse Data---------------------------------------------//
 var selected_ingredients = [];
-//drawnetwork();
+
 
 function drawnetwork(){
 
@@ -39,7 +39,6 @@ d3.json("/get_network_data")
     });
 
     //console.log(d3.values(nodes));
-
     let width = 1000,
       height = 1000;
 
@@ -61,6 +60,12 @@ d3.json("/get_network_data")
       .attr('width', width)
       .attr('height', height)
       .attr('id','network-id');
+
+
+      screenwidth = screen.width;
+      screenheight = screen.height;
+      scalenetwork(Math.floor(0.7*screenwidth),screenheight-300);
+
 
     //---------------------------------------------------Add Elements--------------------------------------------//
     //---------------------------------------------------- add links---------------------------------------------//
@@ -236,3 +241,15 @@ function Clicked(d) {
   //updateinfocard();
 }
 
+
+function scalenetwork(w,h){
+    scaleratio = Math.min(w/1000,h/1000)+0.3
+    translx = Math.floor(-500+scaleratio*1000/2 + 100)
+    transly = Math.floor(-500+scaleratio*1000/2 - 130)
+    translexpr = "scale(" + scaleratio + ") translate(" + translx + 'px,' + transly + "px)"
+    console.log(translexpr)
+    var network = $('#network-id')[0]
+    console.log(network)
+    network.style.transform = translexpr
+
+  }

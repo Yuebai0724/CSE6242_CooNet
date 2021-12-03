@@ -38,9 +38,10 @@
 								<img src="{{ url_for('static', filename='img/GeorgiaTech.png') }}" style="width:216px;height:75px;">
 							</div>
 							<div class="topnav">
-								<a id="menuitem" href="#contact">About</a>
-								<a id="menuitem" href="#contact">Blog</a>
-								<a id="menuitem" href="#contact">Tutorial</a>
+
+								<a id="menuitem" href="https://forms.gle/Dw5GKMuvUDsW8kk39" style="text-decoration:underline">Feedback</a>
+								<a id="menuitem" href="/groupinfo">About</a>
+								<a id="menuitem" href="#Tutorial">Tutorial</a>
 								<a id="menuitem" class="active" href="#home">Home</a>
 							</div>
 						</div>
@@ -48,10 +49,10 @@
 							<div id="text">
 								<h1>Get started on renovating your recipe</h1>
 								<h2> <span style="background-color:  #ffeda0">/ Using CooNet / </span></h2>
-								<p>This is the UNCOMPLETED homepage of group project for course <highlight>CSE 6242</highlight> Data Visualization and Analysis at <b>Georgia Tech</b>.</p>
+								<p>This is the test homepage of group project for course <highlight>CSE 6242</highlight> Data Visualization and Analysis at <b>Georgia Tech</b>.</p>
 								<p>We designed a website for cook and cooking lover to develop and explore their recipe applying <highlight>clustering</highlight> and <highlight>prediction</highlight> algorithm.
 								<p>The homepage is constructed based on the framework of <highlight>ScrollMagic</highlight> and network visualization by <highlight>d3</highlight>.</p>
-								<form method="POST"><button class="viewsource" name="jumpto" value="GroupInfo" style="background:none;border:none">{ Our Group }</button></form><br>
+								<a  href="/groupinfo" style="background:none;border:none;color:steelblue;text-decoration:underline">{ Our Group }</a><br>
 							</div>
 							<div id="imagecontainer">
 								<img src="{{ url_for('static', filename='img/cluster.png') }}" alt="clustering" style="width:100px;height:100px;">
@@ -88,7 +89,7 @@
 					<section class="panel black">
 						<div id='tagcontainer'>
 							<div id="tagcontainer2">
-								<h1 style="color:#F0BC5E;font-size:200%">Choose your recipe genre:</h1>
+								<h1 style="color:#F0BC5E;font-size:200%">Choose your recipe tags:</h1>
 								<div id='tags' style="display:flex;flex-direction:row"></div>
 							</div>
 							<p id='Arrow' class="white2">↧</p>
@@ -194,7 +195,7 @@
 						};
 					};
 
-					
+
 					function generateresult() {
 						// upload Data
 						// selectedlist
@@ -212,7 +213,7 @@
 						return false;
 						//});
 					}
-					
+
 				</script>
 				</section>
 			</div>

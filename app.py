@@ -7,7 +7,7 @@ from models.TW_freq_filter import frequency, recipeFilter
 #import zipfile
 
 
-#zf = zipfile.ZipFile('realData/database.csv.zip') 
+#zf = zipfile.ZipFile('realData/database.csv.zip')
 df_frequency = pd.read_csv("realData/frequency.csv")
 big_df1 = pd.read_csv("realData/Part1.csv")
 big_df2 = pd.read_csv("realData/Part2.csv")
@@ -49,7 +49,6 @@ def homepage():
     if request.method == 'POST':
         print("Jump to result page...")
         return redirect(url_for('result_page'))
-        #return render_template("Result.html")
     return render_template("index.html")
 
 
@@ -78,7 +77,7 @@ def generate_result():
     data.Recipe_stats = None
     print("------check data------")
     print(big_df1['name'].iloc[1])
-    
+
     #-----get selected ingredients & input tags-----#
     print("-------request1-------")
     Selected_ingredients = request.args.getlist('selected[]')
@@ -94,7 +93,7 @@ def generate_result():
     print("Integer tags: ", integer_tags)
     data.Selected_ingredients = Selected_ingredients
     data.Input_tags = integer_tags
-    
+
     #-----use model to predict results-----#
     model = Model()
     cluster_id = model.cluster(integer_tags)
@@ -108,11 +107,11 @@ def generate_result():
 
     time.sleep(0.2)
     Recipe_stats2 = recipeFilter(big_df2, Selected_ingredients)
-    
+
     time.sleep(0.2)
     Recipe_stats3 = recipeFilter(big_df3, Selected_ingredients)
     Recipe_stats = pd.concat([Recipe_stats1, Recipe_stats2, Recipe_stats3], sort=False)
-    Recipe_stats = Recipe_stats.to_json(orient='records') 
+    Recipe_stats = Recipe_stats.to_json(orient='records')
 
     #-----store results-----#
     d2 = {"name": "network_data", "data": []}
@@ -139,10 +138,10 @@ def update_result():
 
     if len(Selected_ingredients)==0:
         Selected_ingredients = data.Selected_ingredients
-    
+
     print("Selected ingredients: ", Selected_ingredients)
     data.Selected_ingredients = Selected_ingredients
-    
+
     #-----use model to predict results-----#
     model = Model()
     cluster_id = data.Cluster_ID
@@ -154,11 +153,11 @@ def update_result():
 
     time.sleep(0.2)
     Recipe_stats2 = recipeFilter(big_df2, Selected_ingredients)
-    
+
     time.sleep(0.2)
     Recipe_stats3 = recipeFilter(big_df3, Selected_ingredients)
     Recipe_stats = pd.concat([Recipe_stats1, Recipe_stats2, Recipe_stats3], sort=False)
-    Recipe_stats = Recipe_stats.to_json(orient='records') 
+    Recipe_stats = Recipe_stats.to_json(orient='records')
 
     #-----store results-----#
     d2 = {"name": "network_data", "data": []}
@@ -184,7 +183,7 @@ def get_network_data():
         if time.time()>=mustend:
             break
         time.sleep(0.1)
-    
+
     Network_data = data.Network_data
     print("-------get network data-------")
     return jsonify(Network_data)
@@ -215,6 +214,10 @@ def get_prediction():
     print("Predict rating: ", pred_rating)
     return pred_rating
 
+@app.route("/groupinfo")
+def groupinfo():
+    return render_template("GroupInfo.html")
+
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

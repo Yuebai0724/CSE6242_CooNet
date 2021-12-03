@@ -6,7 +6,6 @@ function updateinfocard(){
     var infocard = $('#infocard > div')[0];
     infocard.children[1].remove()
 
-    $(<p>)
-      .text(data)
+    $(<p>).text(data)
   }
 }

@@ -29,7 +29,7 @@
 </head>
 
 <body>
-	<p><a href="{{ url_for('result_page') }}"></a></p>
+	<!-- <p><a href="{{ url_for('result_page') }}"></a></p> -->
 	<div id="content-wrapper">
 		<section class='panel' id="titlechart" style="position:fixed">
 			<div class='navibar'>
@@ -39,10 +39,10 @@
 					<img src="{{ url_for('static', filename='img/GeorgiaTech.png') }}" style="width:216px;height:75px;">
 				</div>
 				<div class="topnav">
-					<a id="menuitem" href="Home.html">Home</a>
-					<a id="menuitem" href="Home.html">Blog</a>
-					<a id="menuitem" href="Home.html">Tutorial</a>
-					<a id="menuitem" class="active">Result</a>
+					<a id="menuitem" href="/">Home</a>
+					<a id="menuitem" href="https://forms.gle/Dw5GKMuvUDsW8kk39">Feedback</a>
+					<a id="menuitem" href="#Tutorial">Tutorial</a>
+					<a id="menuitem" class="/groupinfo">About</a>
 				</div>
 			</div>
 			<div class='netcanvascontainer'>
@@ -52,11 +52,15 @@
 				<div class="card" id="infocard">
 					<div style='padding:10px'>
 					<h3 style='text-align:left'> Predicted Statistics </h3>
-					<p style='text-align:left'> Loading ... </p>
+					<p style='text-align:left'>
+						Still working :'( <br><br>
+						We appreciate your feedback<br>
+						<a href="https://forms.gle/Dw5GKMuvUDsW8kk39" style="color:steelblue;text-decoration:underline"> https://forms.gle/Dw5GKMuvUDsW8kk39</a>
+					</p>
 				</div>
 				</div>
 			</div>
-			<div class="sidenav card" id="mySidebar">
+			<div class="sidenav card" style="right:0;" id="mySidebar">
 				<button class="side_button" onclick="w3_close()"></button>
 				<!-- <button class="hide_sidenav entry" onclick="w3_close()">Close &times;</button> -->
 				<div class='container resultcontainer'>
@@ -69,7 +73,7 @@
 					</div>
 			</div>
 			</div>
-			<div class="sidenav card" id="showbtn">
+			<div class="sidenav card" style="right:0;" id="showbtn">
 				<button class="entry vertical" onclick="w3_open()">Show</button>
 			</div>
 
@@ -77,9 +81,9 @@
 		<section class='panel' id="recipechart" style="position:fixed">
 			<div class='card' id='recipecard'>
 				<button id='recipe_close' onclick = "recipe_close()"> &times </button>
-				<h3 style="padding-left:30px;padding-top:20px;font-size:24px;overflow:wrap"> title </h3>
+				<h3 style="padding-left:30px;padding-top:20px;font-size:24px;overflow:wrap"> Recipe Information </h3>
 				<div id='recipeinfocontainer' style="padding:30px;padding-top:0px;
-				height:310px;overflow-y:auto;overflow-wrap: break-word;" class='scrollbar'>
+				height:400px;overflow-y:auto;overflow-wrap: break-word;" class='scrollbar'>
 					<p> Loading ... </p>
 				</div>
 			</div>
@@ -90,8 +94,18 @@
 	<script src="{{ url_for('static', filename='lib/jquery.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/histogram.js') }}" type="text/javascript"></script>
 	<script src="{{ url_for('static', filename='js/network.js') }}" type="text/javascript"></script>
+	<script src="{{ url_for('static', filename='js/parseRecipe.js') }}" type="text/javascript"></script>
 	<script>
 
+
+	const myPromise = new Promise((resolve, reject) => {
+		setTimeout(() => {
+			drawnetwork();
+		}, 300);
+		});
+
+	myPromise
+	.then(drawhistogram())
 
 		/* open the side navigation bar */
 		function w3_open() {
@@ -114,14 +128,6 @@
 			document.getElementById('recipechart').style.opacity = 0;
 			// document.getElementById('recipechart').style.zIndex = -1;
 		};
-
-		const myPromise = new Promise((resolve, reject) => {
-			setTimeout(() => {
-				drawnetwork();
-			}, 300);
-		});
-
-		myPromise.then(drawhistogram());
 
 	</script>
 

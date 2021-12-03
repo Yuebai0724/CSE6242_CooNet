@@ -15,7 +15,7 @@ let padding={
 let width = w - padding.left - padding.right;
 let height = h - padding.top - padding.bottom;
 
-//drawhistogram()
+
 
 //-----------------------------------------------Draw histogram---------------------------------------------------//
 function drawhistogram() {
@@ -81,7 +81,7 @@ function drawhistogram() {
 
   d3.json('/get_stats').then(function(data) {
     data = data['data']
-    //console.log(data)
+    console.log(data)
     data = JSON.parse(data)
     // console.log(data.slice(1, 5))
     var labels = ["rating","Calories (kcal)","Carbohydrates (g)","Protein (g)","Total fat (g)"];
@@ -403,8 +403,8 @@ function recipe_open(recipe) {
   // console.log($(this))
   console.log(recipe)
   // change title
-  h1 = document.getElementById('recipecard').getElementsByTagName('h3')[0];
-  h1.innerHTML=recipe.name;
+  // h1 = document.getElementById('recipecard').getElementsByTagName('h3')[0];
+  // h1.innerHTML=recipe.name;
 
   // change text
   var div = document.getElementById('recipeinfocontainer');
@@ -415,12 +415,22 @@ function recipe_open(recipe) {
   }
 
   // add new ones
-  var p = document.createElement('p');
-  p.innerHTML = recipe.steps;
-  // p.innerHTML = repeat(id.slice(3),1000);
-  p.setAttribute('style','line-height: 1.5; letter-spacing: .1rem;')
+  var recipeDiv = $("<div>")
+                  .attr("id",'recipe-detail')
+                  .attr('style','line-height: 1.5; letter-spacing: .1rem;')
+                  .appendTo(div);
+   // = document
+   //              .createElement('div')
+   //              .setAttribute("id",'recipe-detail')
+   //              .appendTo(div);
+   //              // .setAttribute('style','line-height: 1.5; letter-spacing: .1rem;')
 
-  div.appendChild(p)
+  parserecipe(recipe)
+  // p.innerHTML = recipe.steps;
+  // p.innerHTML = repeat(id.slice(3),1000);
+  // p.setAttribute('style','line-height: 1.5; letter-spacing: .1rem;')
+
+  // div.appendChild(p)
   document.getElementById('recipechart').style.visibility = 'visible';
   document.getElementById('recipechart').style.opacity = 1;
 
